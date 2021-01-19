@@ -1,4 +1,5 @@
 const User = require('./user')
+const Door = require('./door')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -6,6 +7,9 @@ const User = require('./user')
  *
  *    BlogPost.belongsTo(User)
  */
+//User ends up in Door as ID
+Door.belongsToMany(User, {through: 'UserDoor'})
+User.belongsToMany(Door, {through: 'UserDoor'})
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -14,5 +18,6 @@ const User = require('./user')
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User
+  User,
+  Door
 }
