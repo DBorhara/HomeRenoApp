@@ -13,21 +13,22 @@ router.get('/', async (req, res, next) => {
 })
 
 //Get door by ID/NAME
-router.get('/:id', async (req, res, next) => {
-  try {
-    const magic = await Object.keys(Door.prototype)
-    const door = await Door.findByPk(req.params.id)
-    res.json(magic, door)
-  } catch (error) {
-    next(error)
-  }
-})
+// router.get('/:id', async (req, res, next) => {
+//   try {
+//     const magic = await Object.keys(Door.prototype)
+//     const door = await Door.findByPk(req.params.id)
+//     res.json(magic, door)
+//   } catch (error) {
+//     next(error)
+//   }
+// })
 
 router.get('/:name', async (req, res, next) => {
   try {
     const magic = await Object.keys(Door.prototype)
-    const door = await Door.findByPk(req.params.name)
-    res.json(magic, door)
+    console.log(req.params.name)
+    const door = await Door.findAll({where: {name: req.params.name}})
+    res.json(door)
   } catch (error) {
     next(error)
   }
